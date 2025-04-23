@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products - EV Research Hub</title>
+  <style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #495057;
+        line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+        color: #2980b9;
+        font-weight: 600;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .header {
+        background-color: #ffffff;
+        color: #495057;
+        text-align: center;
+        padding: 25px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 2.8em;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        color: #2980b9;
+    }
+
+     .header p {
+        font-size: 1.1em;
+        margin-top: 8px;
+        color: #6c757d;
+    }
+
+
+    .search-bar-section {
+        background-color: #e8f5e9;
+        padding: 15px 0;
+        border-bottom: 1px solid #c8e6c9;
+    }
+
+    .search-bar-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .search-bar-container form {
+        display: flex;
+        max-width: 450px;
+        width: 100%;
+    }
+
+    .search-bar-container input[type="text"],
+    .search-bar-container input[type="search"] {
+        flex-grow: 1;
+        padding: 10px 15px;
+        border: 1px solid #a5d6a7;
+        border-radius: 20px 0 0 20px;
+        font-size: 1em;
+        border-right: none;
+        background-color: #ffffff;
+    }
+
+    .search-bar-container button[type="submit"] {
+        padding: 10px 20px;
+        border: 1px solid #2ecc71;
+        background-color: #2ecc71;
+        color: white;
+        border-radius: 0 20px 20px 0;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-bar-container button[type="submit"]:hover {
+        background-color: #27ae60;
+        border-color: #27ae60;
+    }
+
+    .main-nav {
+        background-color: #ffffff;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .main-nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: flex-start;
+        padding: 5px 0;
+        margin: 0;
+    }
+
+    .main-nav li {
+        margin-right: 10px;
+    }
+
+    .main-nav a {
+        text-decoration: none;
+        color: #495057;
+        padding: 10px 15px;
+        display: block;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .main-nav a:hover {
+        color: #2980b9;
+        background-color: #e8f5e9;
+    }
+
+    .main-nav a.active {
+        font-weight: bold;
+        color: #2980b9;
+        background-color: #e0f2f7;
+        border-bottom: 2px solid #2980b9;
+    }
+
+    .main-content {
+        padding: 30px 0;
+        background-color: #f8f9fa;
+    }
+
+    .hero-placeholder {
+      min-height: 350px;
+      position: relative;
+      overflow: hidden;
+      display: block;
+      border: 1px solid #dee2e6;
+      background-color: #e0f2f7;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+    .hero-placeholder span { display: none; }
+    #hero-slideshow .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.0s ease-in-out;
+      background-color: #fff;
+    }
+    #hero-slideshow .slide.active {
+      opacity: 1;
+    }
+
+    .product-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 30px;
+      margin-bottom: 30px;
+      align-items: start;
+    }
+
+    .image-placeholder {
+      border: 1px solid #dee2e6;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 250px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .image-placeholder img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      max-height: 400px;
+    }
+
+    .product-info-column h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #2980b9;
+    }
+    .product-description {
+      border: 1px solid #c8e6c9;
+      padding: 20px;
+      background-color: #e8f5e9;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    .product-description p {
+      color: #495057;
+      font-size: 1em;
+      text-align: left;
+      margin: 0;
+    }
+
+    .switch-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .switch-buttons button {
+      padding: 10px 15px;
+      border: 1px solid #2ecc71;
+      background-color: #2ecc71;
+      color: white;
+      cursor: pointer;
+      border-radius: 20px;
+      font-size: 0.95em;
+      flex: 0 1 48%;
+      margin: 0 1%;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .switch-buttons button:hover {
+       background-color: #27ae60;
+       border-color: #27ae60;
+    }
+
+    .product-actions {
+        margin-top: 15px;
+        padding: 15px;
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+    }
+    .product-actions p {
+        margin: 10px 0;
+    }
+    .action-link {
+        color: #2980b9;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .action-link:hover {
+        text-decoration: underline;
+    }
+    .stars {
+        color: #f39c12;
+        font-size: 1.2em;
+        margin-left: 5px;
+    }
+    .secondary-search {
+        margin-top: 20px;
+        display: flex;
+    }
+    .secondary-search input[type="search"] {
+        flex-grow: 1;
+        padding: 8px 12px;
+        border: 1px solid #a5d6a7;
+        border-radius: 20px 0 0 20px;
+        font-size: 0.9em;
+        border-right: none;
+        background-color: #ffffff;
+    }
+    .secondary-search button[type="submit"] {
+        padding: 8px 15px;
+        border: 1px solid #2ecc71;
+        background-color: #2ecc71;
+        color: white;
+        border-radius: 0 20px 20px 0;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .secondary-search button[type="submit"]:hover {
+         background-color: #27ae60;
+         border-color: #27ae60;
+    }
+
+
+    .footer {
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        text-align: center;
+        padding: 25px 0;
+        margin-top: 30px;
+    }
+
+    .footer p {
+        margin: 0;
+        font-size: 0.9em;
+    }
+
+    .footer a {
+        color: #3498db;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .search-bar-container { justify-content: center; }
+        .search-bar-container form { max-width: 90%; }
+        .main-nav ul { flex-direction: column; align-items: stretch; }
+        .main-nav li { margin-right: 0; margin-bottom: 5px; text-align: center; }
+        .header h1 { font-size: 2.2em; }
+        .header p { font-size: 1em; }
+
+        .hero-placeholder { min-height: 250px; }
+        .product-details-grid { grid-template-columns: 1fr; }
+        .product-info-column h2 { margin-top: 20px; }
+        .switch-buttons { flex-direction: column; }
+        .switch-buttons button { flex: 1 1 auto; margin: 5px 0; }
+    }
+  </style>
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+        <h1>EV Products</h1>
+        <p>Explore the latest Electric Vehicle Models</p>
+    </div>
+  </header>
+
+  <section class="search-bar-section">
+    <div class="container search-bar-container">
+        <form action="/search" method="get">
+            <input type="text" name="query" placeholder="Search products...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+   </section>
+
+  <nav class="main-nav">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+      <section id="hero-slideshow" class="hero-placeholder">
+        <span></span>
+      </section>
+
+      <section class="product-details-grid">
+        <div class="product-image-column">
+          <div class="image-placeholder">
+            <img id="productImage" src="car_images/kia_ev3_long_range.jpg" alt="Kia EV3 Long Range" />
+          </div>
+          <div class="switch-buttons">
+            <button id="prevBtn">Previous Car</button>
+            <button id="nextBtn">Next Car</button>
+          </div>
+           <div class="product-actions">
+                <p><a href="#" class="action-link">Add to Comparison</a></p>
+                <div>Customer Rating: <span class="stars">★★★★☆</span></div>
+                <p><a href="#" class="action-link">Find a Dealer</a></p>
+           </div>
+        </div>
+
+        <div class="product-info-column">
+          <h2 id="productName">Kia EV3 Long Range</h2>
+          <div class="product-description" id="productDescription">
+            <p>
+              Available to order since October 2024. Range: 280 mi. Battery: 78.0 kWh. Price: £35,995.
+            </p>
+          </div>
+          <form class="secondary-search" action="#" method="get">
+            <input type="search" name="query_secondary" placeholder="Search specific features..." />
+            <button type="submit">Go</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+        <div class="container">
+            <p>© 2024 EV Research Hub. All rights reserved. | <a href="#">Privacy Policy</a></p>
+        </div>
+  </footer>
+
+  <script>
+    const electricCars = [
+      { name: 'Kia EV3 Long Range', description: 'Available to order since October 2024. Range: 280 mi. Battery: 78.0 kWh. Price: £35,995.', imageUrl: 'car_images/Kia EV3 Long Range.jpg' },
+      { name: 'Tesla Model 3 Long Range Dual Motor', description: 'Available to order since October 2023. Range: 325 mi. Battery: 75.0 kWh. Price: £49,990.', imageUrl: 'car_images/Tesla Model 3 Long Range Dual Motor.jpg' },
+      { name: 'Renault 5 E-Tech 52kWh 150hp', description: 'Available to order since December 2024. Range: 200 mi. Battery: 52.0 kWh. Price: £26,995.', imageUrl: 'car_images/Renault 5 E-Tech 52kWh 150hp.jpg' },
+      { name: 'Tesla Model Y Long Range Dual Motor', description: 'Discontinued (February 2022 - February 2025). Range: 275 mi. Battery: 75.0 kWh. Price: £51,990.', imageUrl: 'car_images/Tesla Model Y Long Range Dual Motor.jpg' },
+      { name: 'Skoda Elroq 85', description: 'Available to order since October 2024. Range: 280 mi. Battery: 77.0 kWh. Price: £38,650.', imageUrl: 'car_images/Skoda Elroq 85.jpg' },
+      { name: 'MG MG4 EV Long Range', description: 'Available to order since October 2022. Range: 225 mi. Battery: 61.7 kWh. Price: £29,495.', imageUrl: 'car_images/MG MG4 EV Long Range.jpg' },
+      { name: 'Tesla Model 3', description: 'Available to order since October 2023. Range: 260 mi. Battery: 57.5 kWh. Price: £39,990.', imageUrl: 'car_images/Tesla Model 3.jpg' },
+      { name: 'Hyundai Kona Electric 65 kWh', description: 'Available to order since July 2023. Range: 240 mi. Battery: 65.4 kWh. Price: £38,595.', imageUrl: 'car_images/Hyundai Kona Electric 65 kWh.jpg' },
+      { name: 'BYD SEAL 82.5 kWh AWD Excellence', description: 'Available to order since September 2023. Range: 275 mi. Battery: 82.5 kWh. Price: £48,695.', imageUrl: 'car_images/BYD SEAL 82.5 kWh AWD Excellence.jpg' },
+      { name: 'Maxus MIFA 9', description: 'Available to order since February 2023. Range: 225 mi. Battery: 84.0 kWh. Price: £65,290.', imageUrl: 'car_images/Maxus MIFA 9.jpg' }
+    ];
+
+    let currentCarIndex = 0;
+
+    function updateProductDisplay() {
+      const car = electricCars[currentCarIndex];
+      const productImage = document.getElementById('productImage');
+      const productName = document.getElementById('productName');
+      const productDescription = document.getElementById('productDescription');
+
+      if(productImage && productName && productDescription) {
+          productImage.src = car.imageUrl;
+          productImage.alt = car.name;
+          productName.textContent = car.name;
+          productDescription.innerHTML = `<p>${car.description}</p>`;
+      }
+    }
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if(prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          currentCarIndex = (currentCarIndex - 1 + electricCars.length) % electricCars.length;
+          updateProductDisplay();
+        });
+
+        nextBtn.addEventListener('click', () => {
+          currentCarIndex = (currentCarIndex + 1) % electricCars.length;
+          updateProductDisplay();
+        });
+    }
+
+    updateProductDisplay();
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const slideshowContainer = document.getElementById('hero-slideshow');
+      if (!slideshowContainer) return;
+      const imageFolder = 'CarImages/';
+      const images = ['image1.jpg', 'image2.jpg', 'image3.jpg'];
+      const slideDuration = 4000;
+      let currentImageIndex = 0;
+
+      const loadedImages = [];
+      images.forEach(imageName => {
+        const img = new Image();
+        img.src = imageFolder + imageName;
+        loadedImages.push(img);
+      });
+
+      images.forEach((imageName, index) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = imageFolder + imageName;
+        imgElement.classList.add('slide');
+        imgElement.alt = `Hero Image ${index + 1}`;
+        if (index === 0) {
+          imgElement.classList.add('active');
+        }
+        slideshowContainer.appendChild(imgElement);
+      });
+
+      const slides = slideshowContainer.querySelectorAll('.slide');
+      if (slides.length > 1) {
+        setInterval(() => {
+          slides[currentImageIndex].classList.remove('active');
+          currentImageIndex = (currentImageIndex + 1) % slides.length;
+          slides[currentImageIndex].classList.add('active');
+        }, slideDuration);
+      } else if (slides.length === 1) {
+         if (slides[0]) slides[0].classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>

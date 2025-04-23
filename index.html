@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EV Research Hub - Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #495057;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: #2980b9;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            color: #495057;
+            text-align: center;
+            padding: 25px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #2980b9;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            margin-top: 8px;
+            color: #6c757d;
+        }
+
+        .search-bar-section {
+            background-color: #e8f5e9;
+            padding: 15px 0;
+            border-bottom: 1px solid #c8e6c9;
+        }
+
+        .search-bar-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-bar-container form {
+            display: flex;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .search-bar-container input[type="text"],
+        .search-bar-container input[type="search"] {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #a5d6a7;
+            border-radius: 20px 0 0 20px;
+            font-size: 1em;
+            border-right: none;
+            background-color: #ffffff;
+        }
+
+        .search-bar-container button[type="submit"] {
+            padding: 10px 20px;
+            border: 1px solid #2ecc71;
+            background-color: #2ecc71;
+            color: white;
+            border-radius: 0 20px 20px 0;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar-container button[type="submit"]:hover {
+            background-color: #27ae60;
+            border-color: #27ae60;
+        }
+
+        .main-nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: flex-start;
+            padding: 5px 0;
+            margin: 0;
+        }
+
+        .main-nav li {
+            margin-right: 10px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #495057;
+            padding: 10px 15px;
+            display: block;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: #2980b9;
+            background-color: #e8f5e9;
+        }
+
+        .main-nav a.active {
+            font-weight: bold;
+            color: #2980b9;
+            background-color: #e0f2f7;
+            border-bottom: 2px solid #2980b9;
+        }
+
+        .main-content {
+            padding: 30px 0;
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 300px;
+            height: 250px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+         .card-content h2 {
+             margin-top: 0;
+         }
+
+        .info-section {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .info-section h3 {
+            margin-top: 0;
+        }
+
+        .footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 30px;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 992px) {
+            .card img {
+                 width: 250px;
+                 height: 200px;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .search-bar-container {
+                justify-content: center;
+            }
+            .search-bar-container form {
+                max-width: 90%;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .main-nav li {
+                margin-right: 0;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+            .card {
+                flex-direction: column;
+            }
+            .card img {
+                width: 100%;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 0;
+                border-radius: 12px 12px 0 0;
+            }
+             .card-content {
+                 padding: 20px;
+             }
+            .header h1 {
+                font-size: 2.2em;
+            }
+            .header p {
+                font-size: 1em;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>EV Research Hub</h1>
+            <p>Your source for the latest in Electric Vehicle Technology</p>
+        </div>
+    </header>
+
+    <section class="search-bar-section">
+        <div class="container search-bar-container">
+            <form action="/search" method="get">
+                <input type="text" name="query" placeholder="Search the Hub...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </section>
+
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="card">
+                <img src="https://www.laserax.com/sites/default/files/public/ev-battery-cell-types.jpg" alt="EV Battery Technology">
+                <div class="card-content">
+                    <h2>EV Battery Technology</h2>
+                    <p>Electric vehicle (EV) batteries are rechargeable energy storage devices that power the electric motors in EVs. These batteries, typically lithium-ion, are designed to provide high energy density, long lifespan, and efficient performance. Advances in EV battery technology have improved charging speed, range, and overall efficiency.</p>
+                </div>
+            </section>
+
+            <section class="card">
+                <img src="https://images.squarespace-cdn.com/content/v1/5f3b08d4515c242514c95656/839f29f7-da76-4c4c-a5c4-55ccd95454a7/what-is-bidirectional-charging.jpg" alt="Fast Charging Innovations">
+                <div class="card-content">
+                    <h2>Fast Charging Innovations</h2>
+                    <p>Fast charging for electric vehicles (EVs) is a high-powered charging method that significantly reduces the time required to recharge an EV's battery. Fast chargers use direct current (DC) to deliver power directly to the battery. Recharge an EV battery to 80% capacity in 20 to 40 minutes.</p>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h3>The Heart of the EV Revolution: Cars and Batteries</h3>
+                <p>
+                    Electric vehicles (EVs) represent a fundamental shift in transportation, moving away from fossil fuels towards cleaner, electric power. Central to this revolution is the battery pack – typically composed of numerous lithium-ion cells – which stores the energy needed to drive the electric motor. The performance, range, charging time, and cost of an EV are heavily dependent on its battery technology. Ongoing research focuses intensely on improving battery energy density (more miles per charge), reducing charging times, increasing battery lifespan, enhancing safety, and lowering manufacturing costs through new chemistries (like solid-state batteries) and innovative pack designs. As battery technology advances, EVs become increasingly practical, affordable, and appealing alternatives to traditional combustion engine vehicles.
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 EV Research Hub. All rights reserved. | <a href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+</body>
+</html>
